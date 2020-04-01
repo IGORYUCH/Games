@@ -44,9 +44,13 @@ def play():
     while game:
         if current_step == player1_side: # Проверка кто сейчас ходит. Изначально это крестики
             show_field()
-            step = int(input('\nYer position is: '))  # Ходит человек
-            if 9 < step < 1 or positions[step-1] != '#':
+            step = input('\nYer position is: ')  # Ходит человек
+            if not ( step in '123456789') or step == '':
                 print('\nWrong input. Never try again')
+                continue
+            step = int(step)
+            if positions[step-1] != '#':
+                print('\nThe position is occupied!')
                 continue
             else:
                 positions[step-1] = current_step
